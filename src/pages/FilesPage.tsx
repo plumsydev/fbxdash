@@ -195,7 +195,7 @@ const FileItem: React.FC<{
             </button>
             {showMenu && (
               <div
-                className="absolute right-0 top-8 z-50 min-w-[160px] rounded-lg border border-border bg-popover py-1 shadow-xl"
+                className="absolute right-0 top-8 z-50 min-w-[160px] rounded-lg border border-border bg-popover py-1 shadow-hard-sm"
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
@@ -236,7 +236,7 @@ const FileItem: React.FC<{
             {file.name}
           </span>
           {file.type !== 'dir' && (
-            <span className="text-xs text-muted-foreground">{formatSize(file.size)}</span>
+            <span className="font-data text-xs text-muted-foreground">{formatSize(file.size)}</span>
           )}
         </div>
       </div>
@@ -281,7 +281,7 @@ const FileItem: React.FC<{
       <div className="relative">
         <Icon size={20} className={iconColor} />
         {isShared && !isParentDir && (
-          <div className="absolute -right-1 -top-1 rounded-full bg-chart-5 p-0.5" title="Partagé">
+          <div className="absolute -right-1 -top-1 rounded-sm bg-chart-5 p-0.5" title="Partagé">
             <Link size={8} className="text-primary-foreground" />
           </div>
         )}
@@ -295,12 +295,12 @@ const FileItem: React.FC<{
         </Badge>
       )}
       {!isParentDir && (
-        <span className="w-24 text-right text-xs text-muted-foreground">
+        <span className="font-data w-24 text-right text-xs text-muted-foreground">
           {file.type === 'dir' ? `${file.filecount || 0} fichiers` : formatSize(file.size)}
         </span>
       )}
       {!isParentDir && (
-        <span className="hidden w-32 text-right text-xs text-muted-foreground md:block">
+        <span className="font-data hidden w-32 text-right text-xs text-muted-foreground md:block">
           {formatDate(file.modification)}
         </span>
       )}
@@ -320,7 +320,7 @@ const FileItem: React.FC<{
           </button>
           {showMenu && (
             <div
-              className="absolute right-0 top-8 z-50 min-w-[160px] rounded-lg border border-border bg-popover py-1 shadow-xl"
+              className="absolute right-0 top-8 z-50 min-w-[160px] rounded-lg border border-border bg-popover py-1 shadow-hard-sm"
               onClick={(e) => e.stopPropagation()}
             >
               <button
@@ -418,17 +418,17 @@ const DownloadItem: React.FC<{
         <div className="min-w-0 flex-1">
           <h4 className="truncate text-sm text-foreground">{task.name}</h4>
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <span>{formatSize(task.downloaded)} / {formatSize(task.size)}</span>
+            <span className="font-data">{formatSize(task.downloaded)} / {formatSize(task.size)}</span>
             {isActive && (
               <>
                 <span>-</span>
-                <span className="text-primary">{formatSize(task.downloadSpeed)}/s</span>
+                <span className="font-data text-primary">{formatSize(task.downloadSpeed)}/s</span>
               </>
             )}
             {task.eta && task.eta > 0 && isActive && (
               <>
                 <span>-</span>
-                <span>{Math.floor(task.eta / 60)}min restantes</span>
+                <span className="font-data">{Math.floor(task.eta / 60)}min restantes</span>
               </>
             )}
             {getStatusText() && (
@@ -1006,7 +1006,7 @@ export const FilesPage: React.FC<FilesPageProps> = ({ onBack, initialTab, initia
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-sm">
+      <header className="sticky top-0 z-40 border-b border-border bg-background">
         <div className="mx-auto max-w-[1920px] px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -1033,7 +1033,7 @@ export const FilesPage: React.FC<FilesPageProps> = ({ onBack, initialTab, initia
                 <HardDrive size={16} className="text-muted-foreground" />
                 <div>
                   <div className="text-xs text-muted-foreground">Espace utilisé</div>
-                  <div className="text-sm text-foreground">
+                  <div className="font-data text-sm text-foreground">
                     {formatSize(usedStorage)} / {formatSize(totalStorage)}
                   </div>
                 </div>
@@ -1437,7 +1437,7 @@ export const FilesPage: React.FC<FilesPageProps> = ({ onBack, initialTab, initia
                           {link.expire > 0 ? (
                             <>
                               <Clock size={12} />
-                              <span>Expire le {formatDate(link.expire)}</span>
+                              <span>Expire le <span className="font-data">{formatDate(link.expire)}</span></span>
                             </>
                           ) : (
                             <span>Pas d'expiration</span>
@@ -1488,8 +1488,8 @@ export const FilesPage: React.FC<FilesPageProps> = ({ onBack, initialTab, initia
 
         {/* New Folder Modal */}
         {showNewFolderModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
-            <div className="w-full max-w-md rounded-xl border border-border bg-card p-6 shadow-2xl">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80">
+            <div className="w-full max-w-md rounded-xl border border-border bg-card p-6 shadow-hard">
               <h3 className="mb-4 text-lg font-semibold text-foreground">Nouveau dossier</h3>
               <Input
                 type="text"
@@ -1525,8 +1525,8 @@ export const FilesPage: React.FC<FilesPageProps> = ({ onBack, initialTab, initia
 
         {/* Rename Modal */}
         {showRenameModal && renameTarget && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
-            <div className="w-full max-w-md rounded-xl border border-border bg-card p-6 shadow-2xl">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80">
+            <div className="w-full max-w-md rounded-xl border border-border bg-card p-6 shadow-hard">
               <h3 className="mb-4 text-lg font-semibold text-foreground">Renommer</h3>
               <p className="mb-4 text-sm text-muted-foreground">Renommer "{renameTarget.name}"</p>
               <Input
@@ -1564,8 +1564,8 @@ export const FilesPage: React.FC<FilesPageProps> = ({ onBack, initialTab, initia
 
         {/* Copy Modal */}
         {showCopyModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
-            <div className="w-full max-w-lg rounded-xl border border-border bg-card p-6 shadow-2xl">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80">
+            <div className="w-full max-w-lg rounded-xl border border-border bg-card p-6 shadow-hard">
               <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
                 <Copy size={20} className="text-primary" />
                 Copier {selectedFiles.length} élément(s)
@@ -1657,8 +1657,8 @@ export const FilesPage: React.FC<FilesPageProps> = ({ onBack, initialTab, initia
 
         {/* Move Modal */}
         {showMoveModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
-            <div className="w-full max-w-lg rounded-xl border border-border bg-card p-6 shadow-2xl">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80">
+            <div className="w-full max-w-lg rounded-xl border border-border bg-card p-6 shadow-hard">
               <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
                 <Move size={20} className="text-primary" />
                 Déplacer {selectedFiles.length} élément(s)
@@ -1750,8 +1750,8 @@ export const FilesPage: React.FC<FilesPageProps> = ({ onBack, initialTab, initia
 
         {/* Share Modal */}
         {showShareModal && shareTarget && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
-            <div className="w-full max-w-md rounded-xl border border-border bg-card p-6 shadow-2xl">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80">
+            <div className="w-full max-w-md rounded-xl border border-border bg-card p-6 shadow-hard">
               <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
                 <Share2 size={20} className="text-chart-5" />
                 Partager "{shareTarget.name}"
@@ -1829,7 +1829,7 @@ export const FilesPage: React.FC<FilesPageProps> = ({ onBack, initialTab, initia
 
                   {createdShareLink.expire > 0 && (
                     <p className="mb-4 text-xs text-muted-foreground">
-                      Expire le {formatDate(createdShareLink.expire)}
+                      Expire le <span className="font-data">{formatDate(createdShareLink.expire)}</span>
                     </p>
                   )}
 
@@ -1854,8 +1854,8 @@ export const FilesPage: React.FC<FilesPageProps> = ({ onBack, initialTab, initia
 
         {/* Add Download Modal */}
         {showAddDownloadModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
-            <div className="w-full max-w-lg rounded-xl border border-border bg-card p-6 shadow-2xl">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80">
+            <div className="w-full max-w-lg rounded-xl border border-border bg-card p-6 shadow-hard">
               <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
                 <Download size={20} className="text-primary" />
                 Ajouter un téléchargement
@@ -1904,7 +1904,7 @@ export const FilesPage: React.FC<FilesPageProps> = ({ onBack, initialTab, initia
                       </div>
                       <div className="min-w-0 flex-1">
                         <p className="truncate text-sm text-foreground">{torrentFile.name}</p>
-                        <p className="text-xs text-muted-foreground">{formatSize(torrentFile.size)}</p>
+                        <p className="font-data text-xs text-muted-foreground">{formatSize(torrentFile.size)}</p>
                       </div>
                       <button
                         onClick={() => setTorrentFile(null)}
@@ -1971,7 +1971,7 @@ export const FilesPage: React.FC<FilesPageProps> = ({ onBack, initialTab, initia
       {/* Context Menu */}
       {contextMenu && (
         <div
-          className="fixed z-[200] min-w-[180px] rounded-lg border border-border bg-popover py-1 shadow-xl"
+          className="fixed z-[200] min-w-[180px] rounded-lg border border-border bg-popover py-1 shadow-hard-sm"
           style={{ left: contextMenu.x, top: contextMenu.y }}
           onClick={(e) => e.stopPropagation()}
         >

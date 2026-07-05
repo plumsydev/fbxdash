@@ -11,7 +11,7 @@ export const PermissionBanner: React.FC<PermissionBannerProps> = ({ permission, 
   const settingsUrl = getFreeboxSettingsUrl(freeboxUrl);
 
   return (
-    <div className="mb-6 rounded-xl border border-warning/30 bg-warning/10 p-4">
+    <div className="mb-6 rounded border border-warning/30 border-l-4 border-l-warning bg-warning/10 p-4">
       <div className="flex items-start gap-3">
         <AlertTriangle className="mt-0.5 flex-shrink-0 text-warning" size={20} />
         <div className="flex-1">

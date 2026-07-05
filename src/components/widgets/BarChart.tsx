@@ -67,7 +67,7 @@ export const BarChart: React.FC<BarChartProps> = ({
       <div className="flex justify-between items-start z-10 relative mb-2">
         <span className="text-xs text-muted-foreground font-medium">{title}</span>
         <div className="flex items-center gap-1">
-          <span className="text-lg font-bold text-foreground">{currentValue}</span>
+          <span className="font-data text-lg font-bold text-foreground">{currentValue}</span>
           <span className="text-sm text-muted-foreground">{unit}</span>
           {trend === 'down' ? (
             <svg width="12" height="12" viewBox="0 0 12 12" className="text-primary">

@@ -137,7 +137,7 @@ export const TrafficHistoryModal: React.FC<TrafficHistoryModalProps> = ({
         title={
           <span className="flex items-center gap-2">
             État de la Freebox
-            <span className="text-xs font-normal text-muted-foreground bg-secondary px-2 py-0.5 rounded-full">
+            <span className="text-xs font-normal text-muted-foreground bg-secondary px-2 py-0.5 rounded-sm">
               {systemInfo?.box_model_name || 'Freebox'}
             </span>
           </span>
@@ -192,13 +192,13 @@ export const TrafficHistoryModal: React.FC<TrafficHistoryModalProps> = ({
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-secondary/60 rounded-xl p-4 border border-border">
                 <div className="text-xs text-muted-foreground mb-1">Débit descendant</div>
-                <div className="text-2xl font-bold text-primary">
+                <div className="text-2xl font-bold text-primary font-data">
                   {connectionStatus ? formatSpeed(connectionStatus.rate_down) : '--'}
                 </div>
               </div>
               <div className="bg-secondary/60 rounded-xl p-4 border border-border">
                 <div className="text-xs text-muted-foreground mb-1">Débit montant</div>
-                <div className="text-2xl font-bold text-success">
+                <div className="text-2xl font-bold text-success font-data">
                   {connectionStatus ? formatSpeed(connectionStatus.rate_up) : '--'}
                 </div>
               </div>
@@ -259,7 +259,13 @@ export const TrafficHistoryModal: React.FC<TrafficHistoryModalProps> = ({
                         backgroundColor: 'hsl(var(--popover))',
                         borderColor: 'hsl(var(--border))',
                         color: 'hsl(var(--popover-foreground))',
-                        borderRadius: '0.5rem'
+                        borderRadius: '0.25rem',
+                        boxShadow: '2px 2px 0 0 hsl(var(--border))'
+                      }}
+                      labelStyle={{
+                        color: 'hsl(var(--popover-foreground))',
+                        fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace',
+                        fontVariantNumeric: 'tabular-nums'
                       }}
                       formatter={(value: number, _name: string, props: { dataKey: string }) => {
                         const label = props.dataKey === 'download' ? 'Descendant' : 'Montant';
@@ -310,21 +316,21 @@ export const TrafficHistoryModal: React.FC<TrafficHistoryModalProps> = ({
                 <div className="text-xs text-muted-foreground mb-1">
                   {systemInfo?.temp_cpu0 != null ? 'CPU (Moyenne)' : 'CPU Principal'}
                 </div>
-                <div className={`text-2xl font-bold ${cpuTemp && cpuTemp > 70 ? 'text-destructive' : cpuTemp && cpuTemp > 50 ? 'text-warning' : 'text-success'}`}>
+                <div className={`text-2xl font-bold font-data ${cpuTemp && cpuTemp > 70 ? 'text-destructive' : cpuTemp && cpuTemp > 50 ? 'text-warning' : 'text-success'}`}>
                   {cpuTemp ? `${cpuTemp}°C` : '--'}
                 </div>
               </div>
               {systemInfo?.temp_sw != null && systemInfo.temp_sw > 0 && (
                 <div className="bg-secondary/60 rounded-xl p-4 border border-border">
                   <div className="text-xs text-muted-foreground mb-1">Switch</div>
-                  <div className={`text-2xl font-bold ${systemInfo.temp_sw > 70 ? 'text-destructive' : systemInfo.temp_sw > 50 ? 'text-warning' : 'text-success'}`}>
+                  <div className={`text-2xl font-bold font-data ${systemInfo.temp_sw > 70 ? 'text-destructive' : systemInfo.temp_sw > 50 ? 'text-warning' : 'text-success'}`}>
                     {systemInfo.temp_sw}°C
                   </div>
                 </div>
               )}
               <div className="bg-secondary/60 rounded-xl p-4 border border-border">
                 <div className="text-xs text-muted-foreground mb-1">Ventilateur</div>
-                <div className="text-2xl font-bold text-chart-3">
+                <div className="text-2xl font-bold text-chart-3 font-data">
                   {systemInfo?.fan_rpm ? `${systemInfo.fan_rpm} RPM` : '--'}
                 </div>
               </div>
@@ -365,7 +371,13 @@ export const TrafficHistoryModal: React.FC<TrafficHistoryModalProps> = ({
                           backgroundColor: 'hsl(var(--popover))',
                           borderColor: 'hsl(var(--border))',
                           color: 'hsl(var(--popover-foreground))',
-                          borderRadius: '0.5rem'
+                          borderRadius: '0.25rem',
+                          boxShadow: '2px 2px 0 0 hsl(var(--border))'
+                        }}
+                        labelStyle={{
+                          color: 'hsl(var(--popover-foreground))',
+                          fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace',
+                          fontVariantNumeric: 'tabular-nums'
                         }}
                         itemStyle={{ color: 'hsl(var(--popover-foreground))' }}
                       />
@@ -432,13 +444,13 @@ export const TrafficHistoryModal: React.FC<TrafficHistoryModalProps> = ({
                 </div>
                 <div>
                   <div className="text-xs text-muted-foreground mb-1">Bande passante (Down)</div>
-                  <div className="text-lg font-bold text-primary">
+                  <div className="text-lg font-bold text-primary font-data">
                     {connectionStatus ? formatBitrate(connectionStatus.bandwidth_down) : '--'}
                   </div>
                 </div>
                 <div>
                   <div className="text-xs text-muted-foreground mb-1">Bande passante (Up)</div>
-                  <div className="text-lg font-bold text-success">
+                  <div className="text-lg font-bold text-success font-data">
                     {connectionStatus ? formatBitrate(connectionStatus.bandwidth_up) : '--'}
                   </div>
                 </div>

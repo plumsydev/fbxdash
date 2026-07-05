@@ -64,7 +64,7 @@ export const Tooltip: React.FC<TooltipProps> = ({ content, children, position = 
       {isVisible && (
         <div
           ref={tooltipRef}
-          className="fixed z-50 whitespace-nowrap rounded-md border border-border bg-popover px-2 py-1 text-xs text-popover-foreground shadow-md animate-in fade-in"
+          className="fixed z-50 whitespace-nowrap rounded-sm border border-border bg-popover px-2 py-1 text-xs text-popover-foreground shadow-hard-sm animate-in fade-in"
           style={{ top: coords.top, left: coords.left }}
         >
           {content}

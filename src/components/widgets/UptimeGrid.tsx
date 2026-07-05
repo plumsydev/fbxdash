@@ -78,13 +78,13 @@ export const UptimeGrid: React.FC<UptimeGridProps> = ({
       {/* Header with percentage and status */}
       <div className="flex justify-between items-center mb-2">
         <div className="flex items-center gap-3">
-          <span className="text-3xl font-bold text-foreground">{uptimePercentage}%</span>
+          <span className="font-data text-3xl font-bold text-foreground">{uptimePercentage}%</span>
           {daysWithData < 30 && (
             <span className="text-xs text-muted-foreground">({daysWithData}j de données)</span>
           )}
         </div>
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-success" />
           <span className="text-xs text-success">Opérationnel</span>
         </div>
       </div>
@@ -129,7 +129,7 @@ export const UptimeGrid: React.FC<UptimeGridProps> = ({
       {/* Current uptime */}
       <div className="flex items-center justify-center gap-2 mt-2 py-2 bg-secondary/60 rounded-lg">
         <Clock size={14} className="text-success" />
-        <span className="text-sm text-muted-foreground">Uptime actuel: <span className="font-semibold text-foreground">{uptimeFormatted}</span></span>
+        <span className="text-sm text-muted-foreground">Uptime actuel: <span className="font-data font-semibold text-foreground">{uptimeFormatted}</span></span>
       </div>
 
       {/* Legend */}

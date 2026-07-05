@@ -47,8 +47,8 @@ const QrCodeModal: React.FC<{
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-sm p-4">
-      <div className="bg-card rounded-2xl border border-border shadow-2xl overflow-hidden max-w-sm w-full">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 p-4">
+      <div className="bg-card rounded-xl border border-border shadow-hard-sm overflow-hidden max-w-sm w-full">
         <div className="flex items-center justify-between p-4 border-b border-border bg-secondary/40">
           <div className="flex items-center gap-2">
             <Wifi size={20} className="text-primary" />
@@ -207,7 +207,7 @@ export const WifiPanel: React.FC<WifiPanelProps> = ({ networks, onToggle }) => {
               </div>
 
               <div className="flex justify-between mt-2 text-xs text-muted-foreground font-mono">
-                <span>Taux d'occupation {estimatedLoad}%</span>
+                <span>Taux d'occupation <span className="font-data">{estimatedLoad}%</span></span>
                 <span className="text-success">Appareils {deviceCount}</span>
               </div>
             </div>

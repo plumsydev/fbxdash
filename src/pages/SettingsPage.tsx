@@ -77,7 +77,7 @@ const Section: React.FC<{
   permissionError?: string | null;
   freeboxSettingsUrl?: string | null;
 }> = ({ title, icon: Icon, children, permissionError, freeboxSettingsUrl }) => (
-  <div className={`bg-card rounded-xl border border-border shadow-sm overflow-hidden ${permissionError ? 'opacity-60' : ''}`}>
+  <div className={`bg-card rounded-xl border border-border overflow-hidden ${permissionError ? 'opacity-60' : ''}`}>
     <div className="flex items-center gap-3 px-4 py-3">
       <Icon size={18} className="text-muted-foreground" />
       <h3 className="font-medium text-card-foreground">{title}</h3>
@@ -529,7 +529,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onBack }) => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-sm border-b border-border">
+      <header className="sticky top-0 z-40 bg-background border-b border-border">
         <div className="max-w-[1920px] mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -585,7 +585,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onBack }) => {
 
         {/* Success message */}
         {successMessage && (
-          <div className="mb-6 p-4 bg-success/10 border border-success/30 rounded-xl flex items-center gap-3">
+          <div className="mb-6 p-4 bg-success/10 border border-success/30 border-l-4 border-l-success rounded flex items-center gap-3">
             <Save className="text-success" size={18} />
             <p className="text-success">{successMessage}</p>
           </div>
@@ -593,7 +593,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onBack }) => {
 
         {/* Error message */}
         {error && (
-          <div className="mb-6 p-4 bg-destructive/10 border border-destructive/30 rounded-xl flex items-center gap-3">
+          <div className="mb-6 p-4 bg-destructive/10 border border-destructive/30 border-l-4 border-l-destructive rounded flex items-center gap-3">
             <AlertCircle className="text-destructive" />
             <p className="text-destructive">{error}</p>
           </div>
@@ -627,7 +627,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onBack }) => {
                   type="number"
                   value={connectionConfig.remote_access_port}
                   onChange={(e) => setConnectionConfig({ ...connectionConfig, remote_access_port: parseInt(e.target.value) })}
-                  className="w-24"
+                  className="w-24 font-data"
                 />
               </SettingRow>
             </Section>
@@ -731,7 +731,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onBack }) => {
                   type="text"
                   value={dhcpConfig.ip_range_start}
                   onChange={(e) => setDhcpConfig({ ...dhcpConfig, ip_range_start: e.target.value })}
-                  className="w-40 font-mono"
+                  className="w-40 font-data"
                 />
               </SettingRow>
               <SettingRow label="Fin de plage IP">
@@ -739,7 +739,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onBack }) => {
                   type="text"
                   value={dhcpConfig.ip_range_end}
                   onChange={(e) => setDhcpConfig({ ...dhcpConfig, ip_range_end: e.target.value })}
-                  className="w-40 font-mono"
+                  className="w-40 font-data"
                 />
               </SettingRow>
               <SettingRow
@@ -758,7 +758,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onBack }) => {
                           setDhcpConfig({ ...dhcpConfig, dns: newDns });
                         }}
                         placeholder="192.168.1.254"
-                        className="w-40 font-mono"
+                        className="w-40 font-data"
                       />
                       <Button
                         icon={Trash2}
@@ -811,7 +811,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onBack }) => {
             {/* Static Leases Section */}
             <Section title="Baux DHCP statiques" icon={Network} permissionError={!hasPermission('settings') ? getPermissionErrorMessage('settings') : null} freeboxSettingsUrl={!hasPermission('settings') ? getFreeboxSettingsUrl(freeboxUrl) : null}>
               <div className="flex items-center justify-between py-3">
-                <span className="text-xs text-muted-foreground">({staticLeases.length} bail{staticLeases.length !== 1 ? 'x' : ''})</span>
+                <span className="text-xs text-muted-foreground">(<span className="font-data">{staticLeases.length}</span> bail{staticLeases.length !== 1 ? 'x' : ''})</span>
                 <Button
                   icon={Plus}
                   variant="primary"
@@ -837,8 +837,8 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onBack }) => {
                     <tbody className="divide-y divide-border">
                       {staticLeases.map((lease) => (
                         <tr key={lease.id} className="hover:bg-accent/50 transition-colors">
-                          <td className="px-4 py-3 text-sm font-mono text-foreground">{lease.mac}</td>
-                          <td className="px-4 py-3 text-sm font-mono text-foreground">{lease.ip}</td>
+                          <td className="px-4 py-3 text-sm font-data text-foreground">{lease.mac}</td>
+                          <td className="px-4 py-3 text-sm font-data text-foreground">{lease.ip}</td>
                           <td className="px-4 py-3 text-sm text-muted-foreground">{lease.comment || '-'}</td>
                           <td className="px-4 py-3 text-sm text-muted-foreground">{lease.hostname || '-'}</td>
                           <td className="px-4 py-3 text-right">
@@ -911,7 +911,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onBack }) => {
                   type="number"
                   value={ftpConfig.port_ctrl}
                   onChange={(e) => setFtpConfig({ ...ftpConfig, port_ctrl: parseInt(e.target.value) })}
-                  className="w-24"
+                  className="w-24 font-data"
                 />
               </SettingRow>
             </Section>
@@ -969,7 +969,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onBack }) => {
                 description="Redirections de ports configurées sur la Freebox"
               >
                 <div className="flex items-center gap-3">
-                  <Badge variant="success">
+                  <Badge variant="success" className="font-data">
                     {portForwardingRules.filter(r => r.enabled).length} / {portForwardingRules.length}
                   </Badge>
                   <Button
@@ -989,7 +989,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onBack }) => {
                     <div key={rule.id} className="flex items-center justify-between p-3 bg-secondary/60 rounded-lg">
                       <div className="flex-1">
                         <span className="text-sm text-foreground">{rule.comment || `Port ${rule.wan_port_start}`}</span>
-                        <p className="text-xs text-muted-foreground mt-0.5">
+                        <p className="text-xs text-muted-foreground mt-0.5 font-data">
                           {rule.ip_proto.toUpperCase()} {rule.wan_port_start}{rule.wan_port_end ? `-${rule.wan_port_end}` : ''} → {rule.lan_ip}:{rule.lan_port}
                         </p>
                       </div>
@@ -1039,7 +1039,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onBack }) => {
                   description="Comptes configurés pour l'accès VPN"
                 >
                   <Badge variant="info">
-                    {vpnUsers.length} utilisateur{vpnUsers.length !== 1 ? 's' : ''}
+                    <span className="font-data">{vpnUsers.length}</span> utilisateur{vpnUsers.length !== 1 ? 's' : ''}
                   </Badge>
                 </SettingRow>
               )}
@@ -1049,7 +1049,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onBack }) => {
                     <div key={user.login} className="flex items-center justify-between p-3 bg-secondary/60 rounded-lg">
                       <span className="text-sm text-foreground">{user.login}</span>
                       {user.ip_reservation && (
-                        <span className="text-xs text-muted-foreground font-mono">{user.ip_reservation}</span>
+                        <span className="text-xs text-muted-foreground font-data">{user.ip_reservation}</span>
                       )}
                     </div>
                   ))}
@@ -1276,7 +1276,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onBack }) => {
                 value={editingLease.mac}
                 onChange={(e) => setEditingLease({ ...editingLease, mac: e.target.value })}
                 placeholder="AA:BB:CC:DD:EE:FF"
-                className="font-mono"
+                className="font-data"
               />
               <p className="text-xs text-muted-foreground mt-1">Format: XX:XX:XX:XX:XX:XX</p>
             </div>
@@ -1288,7 +1288,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onBack }) => {
                 value={editingLease.ip}
                 onChange={(e) => setEditingLease({ ...editingLease, ip: e.target.value })}
                 placeholder="192.168.1.100"
-                className="font-mono"
+                className="font-data"
               />
               <p className="text-xs text-muted-foreground mt-1">Doit être dans la plage DHCP</p>
             </div>

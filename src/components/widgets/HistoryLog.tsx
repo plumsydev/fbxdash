@@ -70,7 +70,7 @@ export const HistoryLog: React.FC<HistoryLogProps> = ({ logs }) => (
       <div key={log.id} className="pl-6 py-3 relative group">
         {/* Dot */}
         <div
-          className={`absolute left-0 top-4 w-3.5 h-3.5 rounded-full border-2 border-card z-10 ${getTypeColor(log.type)}`}
+          className={`absolute left-0 top-4 w-3.5 h-3.5 rounded-sm border-2 border-card z-10 ${getTypeColor(log.type)}`}
         />
 
         {/* Content */}
@@ -84,7 +84,7 @@ export const HistoryLog: React.FC<HistoryLogProps> = ({ logs }) => (
               </span>
             </span>
           </div>
-          <span className="text-xs text-muted-foreground/70 whitespace-nowrap ml-2">
+          <span className="font-data text-xs text-muted-foreground/70 whitespace-nowrap ml-2">
             {log.timestamp}
           </span>
         </div>

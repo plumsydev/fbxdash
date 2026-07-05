@@ -74,7 +74,7 @@ const Toast: React.FC<ToastProps> = ({ toast, onClose }) => {
   return (
     <div
       className={cn(
-        'flex flex-col overflow-hidden rounded-lg border shadow-lg backdrop-blur-sm transition-all duration-300',
+        'flex flex-col overflow-hidden rounded border shadow-hard-sm transition-all duration-300',
         borders[toast.type]
       )}
       style={{

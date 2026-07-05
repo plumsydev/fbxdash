@@ -68,7 +68,7 @@ const VmCard: React.FC<{
   };
 
   return (
-    <div className="bg-card rounded-xl border border-border overflow-hidden shadow-sm">
+    <div className="bg-card rounded-xl border border-border overflow-hidden">
       {/* Header */}
       <div className="p-4 border-b border-border">
         <div className="flex items-start justify-between gap-3">
@@ -110,16 +110,16 @@ const VmCard: React.FC<{
         <div className="flex items-center gap-4 text-sm">
           <div className="flex items-center gap-2">
             <Cpu size={16} className="text-muted-foreground" />
-            <span className="text-muted-foreground">{vm.vcpus} vCPU</span>
+            <span className="text-muted-foreground font-data">{vm.vcpus} vCPU</span>
           </div>
           <div className="flex items-center gap-2">
             <MemoryStick size={16} className="text-muted-foreground" />
-            <span className="text-muted-foreground">{Math.round(vm.ramTotal * 10) / 10} Go</span>
+            <span className="text-muted-foreground font-data">{Math.round(vm.ramTotal * 10) / 10} Go</span>
           </div>
           {vm.diskTotal > 0 && (
             <div className="flex items-center gap-2">
               <HardDrive size={16} className="text-muted-foreground" />
-              <span className="text-muted-foreground">{Math.round(vm.diskTotal)} Go</span>
+              <span className="text-muted-foreground font-data">{Math.round(vm.diskTotal)} Go</span>
             </div>
           )}
         </div>
@@ -205,8 +205,8 @@ const CreateVmModal: React.FC<{
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-      <div className="bg-card rounded-xl border border-border shadow-lg p-6 w-full max-w-lg">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+      <div className="bg-card rounded-xl border border-border shadow-hard-sm p-6 w-full max-w-lg">
         <h2 className="text-xl font-bold text-foreground mb-6">Créer une VM</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -386,7 +386,7 @@ export const VmsPage: React.FC<VmsPageProps> = ({ onBack }) => {
   if (!supportsVm()) {
     return (
       <div className="min-h-screen bg-background text-foreground">
-        <header className="sticky top-0 z-40 bg-card/95 backdrop-blur-sm border-b border-border">
+        <header className="sticky top-0 z-40 bg-card border-b border-border">
           <div className="max-w-[1920px] mx-auto px-4 py-4">
             <div className="flex items-center gap-4">
               <button
@@ -410,7 +410,7 @@ export const VmsPage: React.FC<VmsPageProps> = ({ onBack }) => {
 
         <main className="max-w-[1920px] mx-auto px-4 py-6 pb-24">
           <div className="flex flex-col items-center justify-center py-16">
-            <div className="w-20 h-20 rounded-full bg-warning/10 flex items-center justify-center mb-6">
+            <div className="w-20 h-20 rounded-lg bg-warning/10 flex items-center justify-center mb-6">
               <Server size={40} className="text-warning" />
             </div>
             <h2 className="text-2xl font-bold text-foreground mb-2">VMs non disponibles</h2>
@@ -436,7 +436,7 @@ export const VmsPage: React.FC<VmsPageProps> = ({ onBack }) => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <header className="sticky top-0 z-40 bg-card/95 backdrop-blur-sm border-b border-border">
+      <header className="sticky top-0 z-40 bg-card border-b border-border">
         <div className="max-w-[1920px] mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -496,7 +496,7 @@ export const VmsPage: React.FC<VmsPageProps> = ({ onBack }) => {
 
         {/* Global VM System Stats */}
         {systemInfo && (
-          <div className="mb-6 p-4 bg-card rounded-xl border border-border shadow-sm">
+          <div className="mb-6 p-4 bg-card rounded-xl border border-border">
             <h3 className="text-sm font-medium text-muted-foreground mb-4">Ressources VM globales</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {/* Memory */}
@@ -549,7 +549,7 @@ export const VmsPage: React.FC<VmsPageProps> = ({ onBack }) => {
                   <Server size={16} className="text-muted-foreground" />
                   <span>VMs</span>
                 </div>
-                <div className="text-2xl font-bold text-foreground">
+                <div className="text-2xl font-bold text-foreground font-data">
                   {vms.filter(vm => vm.status === 'running').length}
                   <span className="text-sm font-normal text-muted-foreground ml-1">/ {vms.length}</span>
                 </div>
@@ -596,7 +596,7 @@ export const VmsPage: React.FC<VmsPageProps> = ({ onBack }) => {
 
         {/* Info card */}
         {vms.length > 0 && (
-          <div className="mt-8 p-6 bg-card rounded-xl border border-border shadow-sm">
+          <div className="mt-8 p-6 bg-card rounded-xl border border-border">
             <h3 className="text-lg font-semibold text-foreground mb-4">Gestion avancée</h3>
             <p className="text-sm text-muted-foreground mb-4">
               Pour des fonctionnalités avancées comme la console VNC, la création d'images ISO,

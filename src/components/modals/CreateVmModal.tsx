@@ -116,9 +116,9 @@ export const CreateVmModal: React.FC<CreateVmModalProps> = ({ isOpen, onClose })
                   key={option.value}
                   type="button"
                   onClick={() => setOs(option.value)}
-                  className={`rounded-lg border p-2 text-center transition-colors sm:p-3 ${
+                  className={`rounded border p-2 text-center transition-colors sm:p-3 ${
                     os === option.value
-                      ? 'border-primary bg-primary/20 text-foreground'
+                      ? 'border-2 border-primary bg-primary/20 text-foreground'
                       : 'border-border bg-secondary/60 text-muted-foreground hover:border-accent'
                   }`}
                   disabled={isLoading}
@@ -142,9 +142,9 @@ export const CreateVmModal: React.FC<CreateVmModalProps> = ({ isOpen, onClose })
                   key={option.value}
                   type="button"
                   onClick={() => setMemory(option.value)}
-                  className={`rounded-lg border px-3 py-2 text-sm transition-colors ${
+                  className={`rounded border px-3 py-2 text-sm transition-colors ${
                     memory === option.value
-                      ? 'border-success bg-success/20 text-success'
+                      ? 'border-2 border-success bg-success/20 text-success'
                       : 'border-border bg-secondary/60 text-muted-foreground hover:border-accent'
                   }`}
                   disabled={isLoading}
@@ -167,9 +167,9 @@ export const CreateVmModal: React.FC<CreateVmModalProps> = ({ isOpen, onClose })
                   key={option.value}
                   type="button"
                   onClick={() => setVcpus(option.value)}
-                  className={`rounded-lg border px-3 py-2 text-sm transition-colors ${
+                  className={`rounded border px-3 py-2 text-sm transition-colors ${
                     vcpus === option.value
-                      ? 'border-primary bg-primary/20 text-primary'
+                      ? 'border-2 border-primary bg-primary/20 text-primary'
                       : 'border-border bg-secondary/60 text-muted-foreground hover:border-accent'
                   }`}
                   disabled={isLoading}
@@ -190,11 +190,11 @@ export const CreateVmModal: React.FC<CreateVmModalProps> = ({ isOpen, onClose })
               </div>
               <div>
                 <span className="text-muted-foreground">RAM</span>
-                <p className="font-medium text-foreground">{RAM_OPTIONS.find(r => r.value === memory)?.label}</p>
+                <p className="font-data font-medium text-foreground">{RAM_OPTIONS.find(r => r.value === memory)?.label}</p>
               </div>
               <div>
                 <span className="text-muted-foreground">CPU</span>
-                <p className="font-medium text-foreground">{vcpus} vCPU{vcpus > 1 ? 's' : ''}</p>
+                <p className="font-data font-medium text-foreground">{vcpus} vCPU{vcpus > 1 ? 's' : ''}</p>
               </div>
             </div>
           </div>

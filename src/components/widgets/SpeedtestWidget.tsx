@@ -136,7 +136,7 @@ export const SpeedtestWidget: React.FC = () => {
             </Tooltip>
           </div>
           <div className="flex items-baseline justify-center gap-1">
-            <span className="text-2xl font-bold text-foreground">{downloadMax.value}</span>
+            <span className="text-2xl font-bold text-foreground font-data">{downloadMax.value}</span>
             <span className="text-sm text-muted-foreground">{downloadMax.unit}</span>
           </div>
         </div>
@@ -151,7 +151,7 @@ export const SpeedtestWidget: React.FC = () => {
             </Tooltip>
           </div>
           <div className="flex items-baseline justify-center gap-1">
-            <span className="text-2xl font-bold text-foreground">{uploadMax.value}</span>
+            <span className="text-2xl font-bold text-foreground font-data">{uploadMax.value}</span>
             <span className="text-sm text-muted-foreground">{uploadMax.unit}</span>
           </div>
         </div>
@@ -161,14 +161,14 @@ export const SpeedtestWidget: React.FC = () => {
       <div className="grid grid-cols-3 gap-3">
         <div className="bg-secondary/60 p-3 rounded-lg border border-border text-center">
           <div className="text-xs text-muted-foreground mb-1">Ping</div>
-          <div className="text-lg font-bold text-foreground">
+          <div className="text-lg font-bold text-foreground font-data">
             {pingResult?.latency != null ? `${pingResult.latency.toFixed(1)}` : '--'}
             <span className="text-xs text-muted-foreground ml-1">ms</span>
           </div>
         </div>
         <div className="bg-secondary/60 p-3 rounded-lg border border-border text-center">
           <div className="text-xs text-muted-foreground mb-1">Gigue</div>
-          <div className="text-lg font-bold text-foreground">
+          <div className="text-lg font-bold text-foreground font-data">
             {pingResult?.jitter != null ? (
               pingResult.jitter === 0 ? (
                 <span className="text-sm text-muted-foreground">N/A</span>
@@ -183,7 +183,7 @@ export const SpeedtestWidget: React.FC = () => {
         </div>
         <div className="bg-secondary/60 p-3 rounded-lg border border-border text-center">
           <div className="text-xs text-muted-foreground mb-1">Perte</div>
-          <div className="text-lg font-bold text-foreground">
+          <div className="text-lg font-bold text-foreground font-data">
             {pingResult?.packetLoss != null ? `${pingResult.packetLoss}` : '--'}
             <span className="text-xs text-muted-foreground ml-1">%</span>
           </div>
@@ -197,7 +197,7 @@ export const SpeedtestWidget: React.FC = () => {
           {bandwidthInfo?.state === 'up' ? 'Connecté' : bandwidthInfo?.state ?? 'Déconnecté'}
         </div>
         {lastUpdate && (
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 font-data">
             <Clock size={10} />
             {lastUpdate.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
           </div>

@@ -340,6 +340,7 @@ export const PortForwardingModal: React.FC<PortForwardingModalProps> = ({
                         placeholder="Ex: 8080"
                         min="1"
                         max="65535"
+                        className="font-data"
                       />
                     </div>
 
@@ -370,6 +371,7 @@ export const PortForwardingModal: React.FC<PortForwardingModalProps> = ({
                         placeholder="Ex: 80"
                         min="1"
                         max="65535"
+                        className="font-data"
                       />
                     </div>
                   </div>
@@ -452,19 +454,21 @@ export const PortForwardingModal: React.FC<PortForwardingModalProps> = ({
                             value={editingRule.wan_port_start}
                             onChange={(e) => setEditingRule({ ...editingRule, wan_port_start: parseInt(e.target.value) || 0 })}
                             placeholder="Port WAN"
+                            className="font-data"
                           />
                           <Input
                             type="text"
                             value={editingRule.lan_ip}
                             onChange={(e) => setEditingRule({ ...editingRule, lan_ip: e.target.value })}
                             placeholder="IP LAN"
-                            className="font-mono"
+                            className="font-data"
                           />
                           <Input
                             type="number"
                             value={editingRule.lan_port}
                             onChange={(e) => setEditingRule({ ...editingRule, lan_port: parseInt(e.target.value) || 0 })}
                             placeholder="Port LAN"
+                            className="font-data"
                           />
                         </div>
                         <Input
@@ -503,7 +507,7 @@ export const PortForwardingModal: React.FC<PortForwardingModalProps> = ({
                             </h4>
                             <Badge variant="info">{getProtoLabel(rule.ip_proto)}</Badge>
                           </div>
-                          <p className="text-xs text-muted-foreground mt-1 ml-8">
+                          <p className="text-xs text-muted-foreground mt-1 ml-8 font-data">
                             :{rule.wan_port_start}{rule.wan_port_end && rule.wan_port_end !== rule.wan_port_start ? `-${rule.wan_port_end}` : ''} → {rule.lan_ip}:{rule.lan_port}
                           </p>
                         </div>

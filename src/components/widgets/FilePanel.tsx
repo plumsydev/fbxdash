@@ -37,16 +37,16 @@ export const FilePanel: React.FC<FilePanelProps> = ({ tasks, onTaskClick }) => {
           <Progress
             value={task.progress}
             className="mb-3"
-            indicatorClassName="bg-gradient-to-r from-primary to-primary/70"
+            indicatorClassName="bg-primary"
           />
 
           {/* Stats row */}
           <div className="flex items-center justify-between text-xs">
             <div className="flex items-center gap-3">
-              <span className="text-muted-foreground">
+              <span className="text-muted-foreground font-data">
                 {formatBytes(task.downloaded)} / {formatBytes(task.size)}
               </span>
-              <span className="text-primary font-medium">{task.progress}%</span>
+              <span className="text-primary font-medium font-data">{task.progress}%</span>
             </div>
             <div className="flex items-center gap-3">
               {task.peers != null && (
@@ -55,7 +55,7 @@ export const FilePanel: React.FC<FilePanelProps> = ({ tasks, onTaskClick }) => {
                 </span>
               )}
               {task.eta > 0 && (
-                <span className="flex items-center gap-1 text-success">
+                <span className="flex items-center gap-1 text-success font-data">
                   <Clock size={10} /> {formatDuration(task.eta)}
                 </span>
               )}
@@ -66,11 +66,11 @@ export const FilePanel: React.FC<FilePanelProps> = ({ tasks, onTaskClick }) => {
           <div className="flex items-center justify-between mt-2 pt-2 border-t border-border">
             <div className="flex items-center gap-1 text-xs">
               <Download size={12} className="text-primary" />
-              <span className="text-primary font-mono">{formatSpeed(task.downloadSpeed)}</span>
+              <span className="text-primary font-mono font-data">{formatSpeed(task.downloadSpeed)}</span>
             </div>
             <div className="flex items-center gap-1 text-xs">
               <Upload size={12} className="text-success" />
-              <span className="text-success font-mono">{formatSpeed(task.uploadSpeed)}</span>
+              <span className="text-success font-mono font-data">{formatSpeed(task.uploadSpeed)}</span>
             </div>
           </div>
         </div>
@@ -98,7 +98,7 @@ export const FilePanel: React.FC<FilePanelProps> = ({ tasks, onTaskClick }) => {
                 <span className="text-xs text-muted-foreground truncate">{task.name}</span>
               </div>
               <div className="flex items-center gap-2 shrink-0">
-                <span className="text-xs text-foreground font-medium">{formatBytes(task.size)}</span>
+                <span className="text-xs text-foreground font-medium font-data">{formatBytes(task.size)}</span>
                 <ChevronRight size={14} className="text-muted-foreground" />
               </div>
             </div>

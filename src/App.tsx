@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Header, Footer, type PageType } from './components/layout';
+import { Header, NavBar, type PageType } from './components/layout';
 import {
   Card,
   BarChart,
@@ -44,7 +44,7 @@ import {
   ArrowDownWideNarrow
 } from 'lucide-react';
 
-/** Shared page chrome: dark canvas + bottom tab bar, used by every non-dashboard page. */
+/** Shared page chrome: a sticky top navbar (brand/stats row + tab row), page content flows below it. */
 const PageShell: React.FC<{
   children: React.ReactNode;
   currentPage: PageType;
@@ -52,9 +52,11 @@ const PageShell: React.FC<{
   onReboot: () => void;
   onLogout: () => void;
 }> = ({ children, currentPage, onPageChange, onReboot, onLogout }) => (
-  <div className="min-h-screen bg-background pb-20 font-sans text-foreground selection:bg-primary/30">
+  <div className="min-h-screen bg-background font-sans text-foreground selection:bg-primary/30">
+    <div className="sticky top-0 z-40">
+      <NavBar currentPage={currentPage} onPageChange={onPageChange} onReboot={onReboot} onLogout={onLogout} />
+    </div>
     {children}
-    <Footer currentPage={currentPage} onPageChange={onPageChange} onReboot={onReboot} onLogout={onLogout} />
   </div>
 );
 
@@ -308,8 +310,16 @@ const App: React.FC = () => {
 
   // Dashboard (default)
   return (
-    <div className="min-h-screen bg-background pb-20 font-sans text-foreground selection:bg-primary/30">
-      <Header systemInfo={systemInfo} connectionStatus={connectionStatus} />
+    <div className="min-h-screen bg-background font-sans text-foreground selection:bg-primary/30">
+      <div className="sticky top-0 z-40">
+        <Header systemInfo={systemInfo} connectionStatus={connectionStatus} />
+        <NavBar
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+          onReboot={handleReboot}
+          onLogout={handleLogout}
+        />
+      </div>
 
       <main className="mx-auto max-w-[1920px] p-4 md:p-6">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
@@ -640,13 +650,6 @@ const App: React.FC = () => {
           onClose={() => setIsCreateVmModalOpen(false)}
         />
       </main>
-
-      <Footer
-        currentPage={currentPage}
-        onPageChange={handlePageChange}
-        onReboot={handleReboot}
-        onLogout={handleLogout}
-      />
     </div>
   );
 };

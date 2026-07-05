@@ -46,16 +46,16 @@ export const VmPanel: React.FC<VmPanelProps> = ({ vms, onToggle, onConsole }) =>
         <div className="flex items-center gap-4 text-xs">
           <div className="flex items-center gap-1.5">
             <Cpu size={14} className="text-chart-1" />
-            <span className="text-muted-foreground">{vm.vcpus} vCPU</span>
+            <span className="font-data text-muted-foreground">{vm.vcpus} vCPU</span>
           </div>
           <div className="flex items-center gap-1.5">
             <MemoryStick size={14} className="text-chart-2" />
-            <span className="text-muted-foreground">{Math.round(vm.ramTotal * 10) / 10} Go</span>
+            <span className="font-data text-muted-foreground">{Math.round(vm.ramTotal * 10) / 10} Go</span>
           </div>
           {vm.diskTotal > 0 && (
             <div className="flex items-center gap-1.5">
               <HardDrive size={14} className="text-chart-3" />
-              <span className="text-muted-foreground">{Math.round(vm.diskTotal)} Go</span>
+              <span className="font-data text-muted-foreground">{Math.round(vm.diskTotal)} Go</span>
             </div>
           )}
         </div>

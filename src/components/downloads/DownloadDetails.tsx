@@ -199,7 +199,7 @@ export const DownloadDetails: React.FC<DownloadDetailsProps> = ({ task, onClose 
       <div>
         <div className="flex items-center justify-between mb-4">
           <div className="text-sm text-muted-foreground">
-            {completedPieces} / {totalPieces} pièces ({Math.round((completedPieces / totalPieces) * 100)}%)
+            <span className="font-data">{completedPieces} / {totalPieces}</span> pièces (<span className="font-data">{Math.round((completedPieces / totalPieces) * 100)}%</span>)
           </div>
           <div className="flex items-center gap-4 text-xs">
             <span className="flex items-center gap-1">
@@ -247,12 +247,12 @@ export const DownloadDetails: React.FC<DownloadDetailsProps> = ({ task, onClose 
   ];
 
   return (
-    <div className="bg-card rounded-xl border border-border shadow-sm overflow-hidden">
+    <div className="bg-card rounded-xl border border-border overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-border">
         <div className="flex-1 min-w-0">
           <h3 className="text-sm font-medium text-foreground truncate">{task.name}</h3>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs text-muted-foreground font-data">
             {formatSize(task.downloaded)} / {formatSize(task.size)} ({task.progress}%)
           </p>
         </div>
@@ -270,10 +270,10 @@ export const DownloadDetails: React.FC<DownloadDetailsProps> = ({ task, onClose 
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
-            className={`flex items-center gap-1.5 px-3 py-2 text-xs font-medium rounded-lg transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+            className={`flex items-center gap-1.5 px-3 py-2 text-xs font-medium border-b-2 transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
               activeTab === tab.key
-                ? 'bg-primary text-primary-foreground'
-                : 'text-muted-foreground hover:text-foreground hover:bg-accent'
+                ? 'border-primary text-foreground'
+                : 'border-transparent text-muted-foreground hover:text-foreground hover:bg-accent'
             }`}
           >
             {tab.icon}
@@ -305,7 +305,7 @@ export const DownloadDetails: React.FC<DownloadDetailsProps> = ({ task, onClose 
                           <div className="flex-1 min-w-0">
                             <p className="text-sm text-foreground truncate">{file.name}</p>
                             <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                              <span>{formatSize(file.rx)} / {formatSize(file.size)}</span>
+                              <span className="font-data">{formatSize(file.rx)} / {formatSize(file.size)}</span>
                               {file.status === 'done' && (
                                 <Badge variant="success" size="sm" className="gap-1">
                                   <Check size={10} /> Terminé
@@ -376,7 +376,7 @@ export const DownloadDetails: React.FC<DownloadDetailsProps> = ({ task, onClose 
                             <span>Seeds: {tracker.nseeders}</span>
                             <span>Leechers: {tracker.nleechers}</span>
                             {tracker.reannounce_in > 0 && (
-                              <span>Réannonce dans {Math.floor(tracker.reannounce_in / 60)}min</span>
+                              <span>Réannonce dans <span className="font-data">{Math.floor(tracker.reannounce_in / 60)}</span>min</span>
                             )}
                           </div>
                         </div>
@@ -421,16 +421,16 @@ export const DownloadDetails: React.FC<DownloadDetailsProps> = ({ task, onClose 
                         </div>
                         <div className="text-right">
                           <div className="flex items-center gap-2 text-xs">
-                            <span className="text-success flex items-center gap-1">
+                            <span className="text-success flex items-center gap-1 font-data">
                               <ArrowDown size={10} />
                               {formatSpeed(peer.rx_rate)}
                             </span>
-                            <span className="text-primary flex items-center gap-1">
+                            <span className="text-primary flex items-center gap-1 font-data">
                               <ArrowUp size={10} />
                               {formatSpeed(peer.tx_rate)}
                             </span>
                           </div>
-                          <p className="text-xs text-muted-foreground">{peer.progress}%</p>
+                          <p className="text-xs text-muted-foreground font-data">{peer.progress}%</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
@@ -478,7 +478,7 @@ export const DownloadDetails: React.FC<DownloadDetailsProps> = ({ task, onClose 
                         </div>
                         <div className="text-right">
                           <p className="text-xs text-muted-foreground">
-                            Expire dans {Math.floor(entry.expire / 60)}min
+                            Expire dans <span className="font-data">{Math.floor(entry.expire / 60)}</span>min
                           </p>
                           {entry.global && (
                             <Badge variant="warning" size="sm">Global</Badge>

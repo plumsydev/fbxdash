@@ -97,7 +97,7 @@ const RecordingCard: React.FC<{
     };
 
     return (
-        <div className="rounded-xl border border-border bg-card p-4 shadow-sm transition-colors hover:border-primary/30">
+        <div className="rounded-xl border border-border bg-card p-4 transition-colors hover:border-primary/30">
             <div className="flex items-start justify-between gap-3">
                 <div className="flex-1 min-w-0">
                     <h3 className="font-medium text-foreground truncate">{recording.name}</h3>
@@ -114,7 +114,7 @@ const RecordingCard: React.FC<{
                 <div className="flex items-center gap-2">
                     {recording.state === 'running' && (
                         <Badge variant="error" className="gap-1">
-              <span className="w-2 h-2 rounded-full bg-destructive animate-pulse"/>
+              <span className="w-2 h-2 rounded-full bg-destructive"/>
               En cours
             </Badge>
                     )}
@@ -137,15 +137,15 @@ const RecordingCard: React.FC<{
           <Calendar size={12}/>
             {formatDate(recording.start)}
         </span>
-                <span className="flex items-center gap-1">
+                <span className="flex items-center gap-1 font-data">
           <Clock size={12}/>
                     {formatTime(recording.start)} - {formatTime(recording.end)}
         </span>
-                <span className="flex items-center gap-1">
+                <span className="flex items-center gap-1 font-data">
           <Video size={12}/>
                     {formatDuration(recording.duration)}
         </span>
-                <span className="flex items-center gap-1">
+                <span className="flex items-center gap-1 font-data">
           <HardDrive size={12}/>
                     {formatSize(recording.byte_size)}
         </span>
@@ -194,7 +194,7 @@ const ProgrammedCard: React.FC<{
     if (programmed.repeat_sunday) repeatDays.push('Dim');
 
     return (
-        <div className={`rounded-xl border bg-card p-4 shadow-sm transition-colors ${
+        <div className={`rounded-xl border bg-card p-4 transition-colors ${
             isActive ? 'border-destructive/50' : isPast ? 'border-border opacity-60' : 'border-border hover:border-primary/30'
         }`}>
             <div className="flex items-start justify-between gap-3">
@@ -207,7 +207,7 @@ const ProgrammedCard: React.FC<{
                 <div className="flex items-center gap-2">
                     {isActive && (
                         <Badge variant="error" className="gap-1">
-              <span className="w-2 h-2 rounded-full bg-destructive animate-pulse"/>
+              <span className="w-2 h-2 rounded-full bg-destructive"/>
               Enregistrement
             </Badge>
                     )}
@@ -235,7 +235,7 @@ const ProgrammedCard: React.FC<{
           <Calendar size={12}/>
             {formatDate(programmed.start)}
         </span>
-                <span className="flex items-center gap-1">
+                <span className="flex items-center gap-1 font-data">
           <Clock size={12}/>
                     {formatTime(programmed.start)} - {formatTime(programmed.end)}
         </span>
@@ -278,7 +278,7 @@ const ProgramTooltip: React.FC<{
 
     return (
         <div
-            className="fixed z-50 max-w-xs rounded-lg border border-border bg-card p-3 shadow-xl pointer-events-none"
+            className="fixed z-50 max-w-xs rounded-lg border border-border bg-card p-3 shadow-hard-sm pointer-events-none"
             style={{
                 left: `${position.x}px`,
                 top: `${position.y}px`,
@@ -286,7 +286,7 @@ const ProgramTooltip: React.FC<{
             }}
         >
             <div className="text-xs text-muted-foreground mb-1">
-                {program.channelName} • {formatDateStr(startTime)} {formatTimeStr(startTime)} - {formatTimeStr(endTime)}
+                {program.channelName} • {formatDateStr(startTime)} <span className="font-data">{formatTimeStr(startTime)} - {formatTimeStr(endTime)}</span>
             </div>
             <div className="font-medium text-foreground text-sm">{program.title}</div>
             {program.category_name && (
@@ -700,7 +700,7 @@ const EpgTimeline: React.FC<{
     const timelineWidth = (timelineDuration / 60) * pixelsPerMinute;
 
     return (
-        <div className="rounded-xl border border-border bg-card overflow-hidden shadow-sm">
+        <div className="rounded-xl border border-border bg-card overflow-hidden">
             {/* Filter bar */}
             <div className="flex items-center gap-3 p-3 bg-secondary/40 border-b border-border">
                 <div className="flex-1 max-w-xs">
@@ -759,7 +759,7 @@ const EpgTimeline: React.FC<{
                                 <div className="min-w-0">
                                     {channel.number && (
                                         <span
-                                            className="text-[10px] text-muted-foreground font-medium">{channel.number}</span>
+                                            className="text-[10px] text-muted-foreground font-medium font-data">{channel.number}</span>
                                     )}
                                     <p className="text-xs text-foreground truncate">{channel.name}</p>
                                 </div>
@@ -797,7 +797,7 @@ const EpgTimeline: React.FC<{
                       {marker.dateLabel}
                     </span>
                                     )}
-                                    <span className="text-xs text-muted-foreground leading-tight">{marker.label}</span>
+                                    <span className="text-xs text-muted-foreground leading-tight font-data">{marker.label}</span>
                                 </div>
                             ))}
                             {/* Current time line in header */}
@@ -870,7 +870,7 @@ const EpgTimeline: React.FC<{
                 {/* Loading indicator - fixed position overlay */}
                 {isLoadingMore && (
                     <div
-                        className="absolute right-0 top-0 bottom-0 w-20 flex items-center justify-center bg-gradient-to-l from-card via-card/90 to-transparent pointer-events-none z-20"
+                        className="absolute right-0 top-0 bottom-0 w-20 flex items-center justify-center bg-card border-l border-border pointer-events-none z-20"
                     >
                         <div className="flex flex-col items-center gap-2">
                             <Loader2 size={24} className="text-primary animate-spin"/>
@@ -949,7 +949,7 @@ const PvrConfigModal: React.FC<{
                                 onChange={(e) => setMarginBefore(parseInt(e.target.value))}
                                 className="flex-1 accent-primary"
                             />
-                            <span className="w-12 text-center text-foreground font-medium">{marginBefore}</span>
+                            <span className="w-12 text-center text-foreground font-medium font-data">{marginBefore}</span>
                         </div>
                         <p className="text-xs text-muted-foreground mt-1">Démarre {marginBefore} min avant</p>
                     </div>
@@ -965,7 +965,7 @@ const PvrConfigModal: React.FC<{
                                 onChange={(e) => setMarginAfter(parseInt(e.target.value))}
                                 className="flex-1 accent-primary"
                             />
-                            <span className="w-12 text-center text-foreground font-medium">{marginAfter}</span>
+                            <span className="w-12 text-center text-foreground font-medium font-data">{marginAfter}</span>
                         </div>
                         <p className="text-xs text-muted-foreground mt-1">Termine {marginAfter} min après</p>
                     </div>
@@ -1183,6 +1183,7 @@ const RecordingFormModal: React.FC<{
                             })}
                             min="0"
                             max="30"
+                            className="font-data"
                         />
                     </div>
                     <div>
@@ -1196,6 +1197,7 @@ const RecordingFormModal: React.FC<{
                             })}
                             min="0"
                             max="60"
+                            className="font-data"
                         />
                     </div>
                 </div>
@@ -1377,7 +1379,7 @@ export const TvPage: React.FC<TvPageProps> = ({onBack}) => {
     return (
         <div className="min-h-screen bg-background text-foreground">
             {/* Header */}
-            <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-sm border-b border-border">
+            <header className="sticky top-0 z-40 bg-background border-b border-border">
                 <div className="max-w-[1920px] mx-auto px-4 py-4">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-4">
@@ -1440,7 +1442,7 @@ export const TvPage: React.FC<TvPageProps> = ({onBack}) => {
 
                 {/* PVR Config Panel */}
                 {hasDisk && (
-                    <div className="mb-6 p-4 bg-card border border-border rounded-xl shadow-sm">
+                    <div className="mb-6 p-4 bg-card border border-border rounded-xl">
                         <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
                                 <button
@@ -1455,7 +1457,7 @@ export const TvPage: React.FC<TvPageProps> = ({onBack}) => {
                                     {pvrConfig ? (
                                         <button
                                             onClick={() => setShowConfigModal(true)}
-                                            className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+                                            className="text-xs text-muted-foreground hover:text-foreground transition-colors font-data"
                                         >
                                             Marges: -{Math.floor(pvrConfig.margin_before / 60)}min /
                                             +{Math.floor(pvrConfig.margin_after / 60)}min

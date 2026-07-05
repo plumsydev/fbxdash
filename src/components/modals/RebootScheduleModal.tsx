@@ -217,7 +217,7 @@ export const RebootScheduleModal: React.FC<RebootScheduleModalProps> = ({
                     type="time"
                     value={time}
                     onChange={(e) => setTime(e.target.value)}
-                    className="w-full px-4 py-3 bg-secondary/60 border border-border rounded-xl text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+                    className="font-data w-full px-4 py-3 bg-secondary/60 border border-border rounded-xl text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
                   />
                 </div>
 
@@ -231,10 +231,10 @@ export const RebootScheduleModal: React.FC<RebootScheduleModalProps> = ({
                       <button
                         key={day.value}
                         onClick={() => toggleDay(day.value)}
-                        className={`flex-1 aspect-square flex items-center justify-center rounded-lg text-sm font-medium transition-all ${
+                        className={`flex-1 aspect-square flex items-center justify-center rounded-lg text-sm font-medium border transition-all ${
                           days.includes(day.value)
-                            ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/20'
-                            : 'bg-secondary/60 text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+                            ? 'border-foreground/90 bg-primary text-primary-foreground shadow-hard-sm'
+                            : 'border-border bg-secondary/60 text-muted-foreground hover:bg-accent hover:text-accent-foreground'
                         }`}
                         title={day.label}
                       >
@@ -277,7 +277,7 @@ export const RebootScheduleModal: React.FC<RebootScheduleModalProps> = ({
                         value={dayTime}
                         disabled={!dayEnabled}
                         onChange={(e) => updateMappingDay(day.value, e.target.value)}
-                        className={`px-3 py-1.5 bg-accent border border-border rounded-lg text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+                        className={`font-data px-3 py-1.5 bg-accent border border-border rounded-lg text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
                           dayEnabled ? 'text-foreground' : 'text-muted-foreground opacity-50'
                         }`}
                       />

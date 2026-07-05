@@ -103,7 +103,7 @@ export const DevicesList: React.FC<DevicesListProps> = ({ devices, onDeviceClick
                 </span>
                 <div className="flex items-center gap-2">
                   {dev.ip && (
-                    <span className="text-[10px] text-muted-foreground font-mono">{dev.ip}</span>
+                    <span className="font-data text-[10px] text-muted-foreground font-mono">{dev.ip}</span>
                   )}
                   {dev.vendor && (
                     <span className="text-[10px] text-muted-foreground/70 truncate max-w-24">{dev.vendor}</span>
@@ -117,7 +117,7 @@ export const DevicesList: React.FC<DevicesListProps> = ({ devices, onDeviceClick
               <div className="flex items-center gap-2">
                 {/* Speed indicators (only show if there's traffic) */}
                 {(dev.speedDown > 0 || dev.speedUp > 0) && (
-                  <div className="flex items-center gap-1.5 text-[10px] font-mono text-muted-foreground">
+                  <div className="font-data flex items-center gap-1.5 text-[10px] font-mono text-muted-foreground">
                     <span className="flex items-center gap-0.5">
                       <ArrowDown size={10} className="text-primary" />
                       {dev.speedDown.toFixed(1)}

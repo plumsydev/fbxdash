@@ -137,7 +137,7 @@ const Tooltip: React.FC<{
 
   const tooltipContent = (
     <div
-      className="fixed z-[9999] min-w-[200px] whitespace-nowrap rounded-lg border border-border bg-popover p-3 shadow-xl"
+      className="fixed z-[9999] min-w-[200px] whitespace-nowrap rounded border border-border bg-popover p-3 shadow-hard-sm"
       style={{ top: position.top, left: position.left }}
     >
       <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">{title}</div>
@@ -145,7 +145,7 @@ const Tooltip: React.FC<{
         {items.map((item) => (
           <div key={item.id} className="flex items-center justify-between gap-4 text-sm">
             <span className="text-popover-foreground/80">{item.name}</span>
-            <span className={`${color} font-medium`}>{item.value}{unit}</span>
+            <span className={`font-data font-medium ${color}`}>{item.value}{unit}</span>
           </div>
         ))}
       </div>
@@ -211,26 +211,26 @@ export const Header: React.FC<HeaderProps> = ({ systemInfo, connectionStatus }) 
   }, [model]);
 
   return (
-    <header className="flex flex-col items-center justify-between gap-4 border-b border-border bg-card p-4 md:flex-row">
+    <header className="flex flex-col items-center justify-between gap-3 bg-card px-4 py-3 md:flex-row">
       {/* Box identifier */}
-      <div className="flex items-center gap-3 rounded-lg border border-border bg-secondary/60 px-4 py-2">
-        <img src={logoUltra} alt="Freebox Ultra" className="h-7 w-7 flex-shrink-0" />
-        <span className="font-semibold leading-none text-foreground">{boxName}</span>
+      <div className="flex w-full items-center gap-3 md:w-auto">
+        <img src={logoUltra} alt="Freebox Ultra" className="h-6 w-6 flex-shrink-0" />
+        <span className="text-sm font-semibold uppercase tracking-wide text-foreground">{boxName}</span>
       </div>
 
       {/* Status badges */}
-      <div className="scrollbar-hide flex w-full items-center gap-2 overflow-x-auto pb-2 md:w-auto md:pb-0">
+      <div className="scrollbar-hide flex w-full items-center gap-2 overflow-x-auto md:w-auto">
 
         {/* Network speeds */}
-        <div className="mx-2 flex items-center gap-4 rounded-lg border border-border bg-secondary/60 px-4 py-2">
-          <div className="flex items-center gap-2">
-            <ArrowDown size={16} className="text-chart-1" />
-            <span className="text-sm font-medium text-foreground">{downloadSpeed}</span>
+        <div className="flex items-center gap-3 rounded border border-border bg-secondary/60 px-3 py-1.5">
+          <div className="flex items-center gap-1.5">
+            <ArrowDown size={14} className="text-chart-1" />
+            <span className="font-data text-sm font-medium text-foreground">{downloadSpeed}</span>
           </div>
           <div className="h-4 w-px bg-border" />
-          <div className="flex items-center gap-2">
-            <ArrowUp size={16} className="text-success" />
-            <span className="text-sm font-medium text-foreground">{uploadSpeed}</span>
+          <div className="flex items-center gap-1.5">
+            <ArrowUp size={14} className="text-success" />
+            <span className="font-data text-sm font-medium text-foreground">{uploadSpeed}</span>
           </div>
         </div>
 
@@ -321,9 +321,9 @@ export const Header: React.FC<HeaderProps> = ({ systemInfo, connectionStatus }) 
         />
 
         {/* IPv4 */}
-        <div className="ml-2 hidden items-center gap-2 rounded-lg border border-border bg-secondary/60 px-4 py-2 lg:flex">
-          <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
-          <span className="font-mono text-sm text-muted-foreground">{ipv4} (IPv4)</span>
+        <div className="ml-2 hidden items-center gap-2 rounded border border-border bg-secondary/60 px-3 py-1.5 lg:flex">
+          <span className="h-1.5 w-1.5 flex-shrink-0 bg-primary" />
+          <span className="font-data text-sm text-muted-foreground">{ipv4} (IPv4)</span>
         </div>
       </div>
     </header>

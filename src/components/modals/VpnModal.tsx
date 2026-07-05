@@ -456,7 +456,7 @@ export const VpnModal: React.FC<VpnModalProps> = ({ isOpen, onClose }) => {
                       value={newUser.ip_reservation}
                       onChange={(e) => setNewUser({ ...newUser, ip_reservation: e.target.value })}
                       placeholder="ex: 192.168.27.10"
-                      className="text-sm font-mono"
+                      className="text-sm font-data"
                     />
                   </div>
 
@@ -484,13 +484,13 @@ export const VpnModal: React.FC<VpnModalProps> = ({ isOpen, onClose }) => {
                         className="flex items-center justify-between p-4 bg-secondary/60 rounded-xl border border-border group"
                       >
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                          <div className="w-10 h-10 rounded bg-primary/20 flex items-center justify-center">
                             <Users size={18} className="text-primary" />
                           </div>
                           <div>
                             <span className="text-foreground font-medium">{user.login}</span>
                             {user.ip_reservation && (
-                              <p className="text-xs text-muted-foreground font-mono mt-0.5">
+                              <p className="text-xs text-muted-foreground font-data mt-0.5">
                                 IP: {user.ip_reservation}
                               </p>
                             )}
@@ -564,7 +564,7 @@ export const VpnModal: React.FC<VpnModalProps> = ({ isOpen, onClose }) => {
                       >
                         <div className="flex items-center justify-between mb-2">
                           <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-success/20 flex items-center justify-center">
+                            <div className="w-8 h-8 rounded bg-success/20 flex items-center justify-center">
                               <Wifi size={16} className="text-success" />
                             </div>
                             <div>
@@ -577,21 +577,21 @@ export const VpnModal: React.FC<VpnModalProps> = ({ isOpen, onClose }) => {
                         <div className="grid grid-cols-4 gap-4 text-xs">
                           <div>
                             <span className="text-muted-foreground">IP source</span>
-                            <p className="text-foreground font-mono mt-0.5">{conn.src_ip}</p>
+                            <p className="text-foreground font-data mt-0.5">{conn.src_ip}</p>
                           </div>
                           <div>
                             <span className="text-muted-foreground">IP locale</span>
-                            <p className="text-foreground font-mono mt-0.5">{conn.local_ip || '--'}</p>
+                            <p className="text-foreground font-data mt-0.5">{conn.local_ip || '--'}</p>
                           </div>
                           <div>
                             <span className="text-muted-foreground">Trafic</span>
-                            <p className="text-foreground mt-0.5">
+                            <p className="text-foreground font-data mt-0.5">
                               ↓{formatBytes(conn.rx_bytes)} ↑{formatBytes(conn.tx_bytes)}
                             </p>
                           </div>
                           <div>
                             <span className="text-muted-foreground">Durée</span>
-                            <p className="text-foreground mt-0.5">{formatDuration(conn.auth_time)}</p>
+                            <p className="text-foreground font-data mt-0.5">{formatDuration(conn.auth_time)}</p>
                           </div>
                         </div>
                       </div>

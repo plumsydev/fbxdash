@@ -32,7 +32,7 @@ export const ResourceBar: React.FC<ResourceBarProps> = ({
       </div>
       <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
         <span>{label}</span>
-        <span>{text || `${Math.round(percent)}%`}</span>
+        <span className="font-data">{text || `${Math.round(percent)}%`}</span>
       </div>
     </div>
   );

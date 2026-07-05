@@ -309,7 +309,7 @@ const DeviceNode: React.FC<{
           {device.name}
         </span>
         {device.ip && (
-          <span className="text-[9px] text-muted-foreground font-mono">{device.ip}</span>
+          <span className="text-[9px] text-muted-foreground font-data">{device.ip}</span>
         )}
         <div className="flex items-center gap-1.5 text-[9px]">
           {device.connection === 'wifi' ? (
@@ -317,10 +317,10 @@ const DeviceNode: React.FC<{
           ) : (
             <Cable size={8} className={device.active ? 'text-chart-2' : 'text-muted-foreground/50'} />
           )}
-          <span className={device.active ? 'text-muted-foreground' : 'text-muted-foreground/50'}>
+          <span className={`font-data ${device.active ? 'text-muted-foreground' : 'text-muted-foreground/50'}`}>
             ↓ {speedDown}
           </span>
-          <span className={device.active ? 'text-muted-foreground' : 'text-muted-foreground/50'}>
+          <span className={`font-data ${device.active ? 'text-muted-foreground' : 'text-muted-foreground/50'}`}>
             ↑ {speedUp}
           </span>
         </div>
@@ -369,8 +369,8 @@ const FreeboxHub: React.FC<{
         </div>
         <span className="text-xs font-bold text-foreground">{modelName}</span>
         <div className="flex items-center gap-2 text-[9px]">
-          <span className="text-primary">↓ {speedDown}</span>
-          <span className="text-chart-2">↑ {speedUp}</span>
+          <span className="text-primary font-data">↓ {speedDown}</span>
+          <span className="text-chart-2 font-data">↑ {speedUp}</span>
         </div>
       </div>
     </foreignObject>
@@ -591,7 +591,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ onBack }) => {
   return (
     <div className="min-h-screen bg-background text-muted-foreground">
       {/* Header */}
-      <div className="sticky top-0 z-10 bg-card/95 backdrop-blur-md border-b border-border">
+      <div className="sticky top-0 z-10 bg-card border-b border-border">
         <div className="max-w-[1920px] mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <button
@@ -603,16 +603,16 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ onBack }) => {
             <h1 className="text-lg font-bold text-foreground">Réseau</h1>
             <div className="flex items-center gap-3 ml-4 text-xs text-muted-foreground">
               <span className="flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-success" />
-                {activeCount} actifs
+                <span className="w-2 h-2 rounded-sm bg-success" />
+                <span className="font-data">{activeCount}</span> actifs
               </span>
               <span className="flex items-center gap-1">
                 <Wifi size={10} className="text-primary" />
-                {wifiCount}
+                <span className="font-data">{wifiCount}</span>
               </span>
               <span className="flex items-center gap-1">
                 <Cable size={10} className="text-chart-2" />
-                {ethCount}
+                <span className="font-data">{ethCount}</span>
               </span>
             </div>
           </div>
@@ -666,15 +666,6 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ onBack }) => {
             transition: isPanning ? 'none' : 'transform 0.1s ease-out',
           }}
         >
-          {/* Background glow around the hub */}
-          <defs>
-            <radialGradient id="hub-glow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.08" />
-              <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
-            </radialGradient>
-          </defs>
-          <circle cx={hubX} cy={hubY} r="160" fill="url(#hub-glow)" />
-
           {/* ISP → Freebox flow line */}
           <FlowLine
             x1={ispX} y1={ispY}
@@ -715,7 +706,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ onBack }) => {
         </svg>
 
         {/* Zoom controls (bottom-right, above legend) */}
-        <div className="absolute bottom-4 right-4 flex flex-col items-center gap-1 bg-card/90 backdrop-blur-sm border border-border rounded-xl p-1.5 shadow-lg z-20">
+        <div className="absolute bottom-4 right-4 flex flex-col items-center gap-1 bg-card/90 border border-border rounded-xl p-1.5 shadow-hard-sm z-20">
           <button
             onClick={() => zoomAtPoint(clampZoom(zoom + ZOOM_STEP), dimensions.width / 2, dimensions.height / 2)}
             className="p-2 hover:bg-accent rounded-lg transition-colors text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
@@ -723,7 +714,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ onBack }) => {
           >
             <ZoomIn size={16} />
           </button>
-          <span className="text-[10px] text-muted-foreground font-mono tabular-nums w-10 text-center">
+          <span className="text-[10px] text-muted-foreground font-data w-10 text-center">
             {zoomPercent}%
           </span>
           <button
@@ -744,21 +735,21 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ onBack }) => {
         </div>
 
         {/* Legend (bottom-left) */}
-        <div className="absolute bottom-4 left-4 bg-card/90 backdrop-blur-sm border border-border rounded-xl px-4 py-3 flex items-center gap-5 text-[10px] shadow-lg z-20">
+        <div className="absolute bottom-4 left-4 bg-card/90 border border-border rounded-xl px-4 py-3 flex items-center gap-5 text-[10px] shadow-hard-sm z-20">
           <div className="flex items-center gap-1.5">
-            <span className="w-5 h-0.5 bg-primary rounded-full inline-block" />
+            <span className="w-5 h-0.5 bg-primary rounded-sm inline-block" />
             <span className="text-muted-foreground">WiFi</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-5 h-0.5 bg-chart-2 rounded-full inline-block" />
+            <span className="w-5 h-0.5 bg-chart-2 rounded-sm inline-block" />
             <span className="text-muted-foreground">Ethernet</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-5 h-0.5 bg-muted-foreground/40 rounded-full inline-block" />
+            <span className="w-5 h-0.5 bg-muted-foreground/40 rounded-sm inline-block" />
             <span className="text-muted-foreground">Hors-ligne</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-primary inline-block animate-pulse" />
+            <span className="w-2 h-2 rounded-sm bg-primary inline-block" />
             <span className="text-muted-foreground">Flux actif</span>
           </div>
         </div>

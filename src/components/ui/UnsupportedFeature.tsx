@@ -42,14 +42,14 @@ export const UnsupportedFeature: React.FC<UnsupportedFeatureProps> = ({
   const displayDescription = description || defaultDescriptions[featureType];
 
   return (
-    <div className={cn('flex flex-col items-center justify-center px-4 py-8 text-center', className)}>
-      <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-warning/10">
-        <Icon size={32} className="text-warning" />
+    <div className={cn('flex flex-col items-center justify-center border border-dashed border-border px-4 py-8 text-center', className)}>
+      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded border border-warning/40 bg-warning/10">
+        <Icon size={22} className="text-warning" />
       </div>
-      <h3 className="mb-2 text-lg font-medium text-foreground">{feature} non disponible</h3>
+      <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-foreground">{feature} non disponible</h3>
       <p className="max-w-sm text-sm text-muted-foreground">{displayDescription}</p>
       {showModelName && capabilities && (
-        <p className="mt-3 text-xs text-muted-foreground/70">
+        <p className="font-data mt-3 text-xs text-muted-foreground/70">
           Modele detecte : <span className="text-muted-foreground">{modelName}</span>
         </p>
       )}

@@ -24,14 +24,14 @@ export const Dialog: React.FC<DialogProps> = ({ open, onClose, children, classNa
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 p-4 backdrop-blur-sm animate-in fade-in"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-background/90 p-4 animate-in fade-in"
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) onClose?.();
       }}
     >
       <div
         className={cn(
-          'w-full max-w-md overflow-hidden rounded-xl border border-border bg-card text-card-foreground shadow-2xl animate-in fade-in slide-in-from-bottom',
+          'w-full max-w-md overflow-hidden rounded border-2 border-foreground/90 bg-card text-card-foreground shadow-hard animate-in fade-in slide-in-from-bottom',
           className
         )}
       >
@@ -48,22 +48,22 @@ export const DialogHeader: React.FC<{
   onClose?: () => void;
   className?: string;
 }> = ({ title, description, icon, onClose, className }) => (
-  <div className={cn('flex items-start justify-between gap-3 border-b border-border p-5', className)}>
+  <div className={cn('flex items-start justify-between gap-3 border-b-2 border-foreground/90 p-4', className)}>
     <div className="flex items-start gap-3">
       {icon && (
-        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-border bg-secondary">
+        <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded border border-border bg-secondary">
           {icon}
         </div>
       )}
       <div>
-        <h2 className="text-lg font-semibold text-foreground">{title}</h2>
-        {description && <p className="mt-0.5 text-sm text-muted-foreground">{description}</p>}
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-foreground">{title}</h2>
+        {description && <p className="mt-1 text-sm text-muted-foreground">{description}</p>}
       </div>
     </div>
     {onClose && (
       <button
         onClick={onClose}
-        className="rounded-md p-1 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+        className="rounded p-1 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
       >
         <X size={18} />
       </button>

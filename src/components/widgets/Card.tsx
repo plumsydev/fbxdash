@@ -10,6 +10,7 @@ interface CardProps {
   onTitleClick?: () => void;
 }
 
+/** A labeled panel, not a soft floating card — flat surface, hard border, header reads like an instrument-panel label. */
 export const Card: React.FC<CardProps> = ({
   title,
   children,
@@ -18,20 +19,23 @@ export const Card: React.FC<CardProps> = ({
   headerColor = 'text-foreground',
   onTitleClick
 }) => (
-  <div className={cn('flex flex-col rounded-xl border border-border bg-card p-4 shadow-sm sm:p-5', className)}>
-    <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+  <div className={cn('flex flex-col rounded border border-border bg-card', className)}>
+    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-4 py-3">
       {onTitleClick ? (
         <h3
-          className={cn('cursor-pointer text-base font-semibold transition-colors hover:text-primary sm:text-lg', headerColor)}
+          className={cn(
+            'cursor-pointer text-xs font-semibold uppercase tracking-wider transition-colors hover:text-primary',
+            headerColor
+          )}
           onClick={onTitleClick}
         >
           {title}
         </h3>
       ) : (
-        <h3 className={cn('text-base font-semibold sm:text-lg', headerColor)}>{title}</h3>
+        <h3 className={cn('text-xs font-semibold uppercase tracking-wider', headerColor)}>{title}</h3>
       )}
       {actions && <div>{actions}</div>}
     </div>
-    <div className="flex flex-1 flex-col overflow-hidden">{children}</div>
+    <div className="flex flex-1 flex-col overflow-hidden p-4 sm:p-5">{children}</div>
   </div>
 );

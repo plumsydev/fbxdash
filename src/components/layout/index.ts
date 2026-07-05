@@ -1,3 +1,3 @@
 export { Header } from './Header';
-export { Footer } from './Footer';
-export type { PageType } from './Footer';
+export { NavBar } from './NavBar';
+export type { PageType } from './NavBar';

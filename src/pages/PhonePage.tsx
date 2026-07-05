@@ -115,7 +115,7 @@ const CallEntryCard: React.FC<{
         </div>
         <div>
           <div className="flex items-center gap-2">
-            <span className="font-medium text-foreground">
+            <span className={`font-medium text-foreground ${call.name ? '' : 'font-data'}`}>
               {call.name || formatPhoneNumber(call.number)}
             </span>
             {call.new && (
@@ -127,11 +127,11 @@ const CallEntryCard: React.FC<{
             {call.duration > 0 && (
               <>
                 <span>•</span>
-                <span>{formatDuration(call.duration)}</span>
+                <span className="font-data">{formatDuration(call.duration)}</span>
               </>
             )}
             <span>•</span>
-            <span>{formatRelativeTime(call.datetime)}</span>
+            <span className="font-data">{formatRelativeTime(call.datetime)}</span>
           </div>
         </div>
       </div>
@@ -170,7 +170,7 @@ const ContactCard: React.FC<{
 
   return (
     <div
-      className="bg-card border border-border rounded-xl p-4 shadow-sm hover:bg-accent transition-colors cursor-pointer"
+      className="bg-card border border-border rounded-xl p-4 hover:bg-accent transition-colors cursor-pointer"
       onClick={() => onEdit(contact)}
     >
       <div className="flex items-start justify-between gap-3">
@@ -205,7 +205,7 @@ const ContactCard: React.FC<{
           {contact.numbers.map((num, i) => (
             <div key={i} className="flex items-center gap-2 text-sm">
               <Phone size={12} className="text-muted-foreground" />
-              <span className="text-foreground/80">{formatPhoneNumber(num.number)}</span>
+              <span className="font-data text-foreground/80">{formatPhoneNumber(num.number)}</span>
               {num.type && (
                 <span className="text-xs text-muted-foreground">({num.type})</span>
               )}
@@ -334,7 +334,7 @@ const ContactFormModal: React.FC<{
                   type="tel"
                   value={num.number}
                   onChange={(e) => handleNumberChange(i, 'number', e.target.value)}
-                  className="flex-1"
+                  className="flex-1 font-data"
                   placeholder="06 12 34 56 78"
                 />
                 <select
@@ -470,7 +470,7 @@ export const PhonePage: React.FC<PhonePageProps> = ({ onBack }) => {
   return (
     <div className="min-h-screen bg-background text-muted-foreground">
       {/* Header */}
-      <header className="sticky top-0 z-40 bg-card/95 backdrop-blur-sm border-b border-border">
+      <header className="sticky top-0 z-40 bg-card border-b border-border">
         <div className="max-w-[1920px] mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -522,9 +522,9 @@ export const PhonePage: React.FC<PhonePageProps> = ({ onBack }) => {
             >
               <span className="flex items-center gap-2">
                 <Clock size={16} />
-                Journal ({calls.length})
+                Journal (<span className="font-data">{calls.length}</span>)
                 {newCallsCount > 0 && (
-                  <Badge variant="info" size="sm">{newCallsCount}</Badge>
+                  <Badge variant="info" size="sm"><span className="font-data">{newCallsCount}</span></Badge>
                 )}
               </span>
             </button>
@@ -538,7 +538,7 @@ export const PhonePage: React.FC<PhonePageProps> = ({ onBack }) => {
             >
               <span className="flex items-center gap-2">
                 <Users size={16} />
-                Contacts ({contacts.length})
+                Contacts (<span className="font-data">{contacts.length}</span>)
               </span>
             </button>
           </div>
@@ -596,7 +596,9 @@ export const PhonePage: React.FC<PhonePageProps> = ({ onBack }) => {
                 }`}
               >
                 {filter === 'all' && 'Tous'}
-                {filter === 'missed' && `Manqués (${missedCallsCount})`}
+                {filter === 'missed' && (
+                  <>Manqués (<span className="font-data">{missedCallsCount}</span>)</>
+                )}
                 {filter === 'incoming' && 'Entrants'}
                 {filter === 'outgoing' && 'Sortants'}
               </button>

@@ -605,7 +605,7 @@ export const ParentalControlModal: React.FC<ParentalControlModalProps> = ({
                                 </Badge>
                                 {nc.override && (
                                   <span className="text-xs text-warning">
-                                    (Temporaire: {formatRemainingTime(nc.override_until)})
+                                    (Temporaire: <span className="font-data">{formatRemainingTime(nc.override_until)}</span>)
                                   </span>
                                 )}
                                 <span className="text-xs text-muted-foreground">
@@ -680,7 +680,7 @@ export const ParentalControlModal: React.FC<ParentalControlModalProps> = ({
                                     {getModeLabel(nc.override_mode)}
                                   </Badge>
                                   <span className="text-sm text-muted-foreground">
-                                    pendant encore {formatRemainingTime(nc.override_until)}
+                                    pendant encore <span className="font-data">{formatRemainingTime(nc.override_until)}</span>
                                   </span>
                                 </div>
                                 <Button variant="default" size="sm" icon={PowerOff} onClick={() => handleClearOverride(profile.id)}>
@@ -702,7 +702,7 @@ export const ParentalControlModal: React.FC<ParentalControlModalProps> = ({
                                 <select
                                   value={overrideDuration}
                                   onChange={(e) => setOverrideDuration(parseInt(e.target.value))}
-                                  className="rounded-lg border border-input bg-secondary/50 px-3 py-1.5 text-sm text-foreground focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring"
+                                  className="font-data rounded-lg border border-input bg-secondary/50 px-3 py-1.5 text-sm text-foreground focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring"
                                 >
                                   <option value="15">15 min</option>
                                   <option value="30">30 min</option>
@@ -866,6 +866,7 @@ export const ParentalControlModal: React.FC<ParentalControlModalProps> = ({
                           type="time"
                           value={newRuleStartTime}
                           onChange={(e) => setNewRuleStartTime(e.target.value)}
+                          className="font-data"
                         />
                       </div>
                       <div className="flex-1">
@@ -874,6 +875,7 @@ export const ParentalControlModal: React.FC<ParentalControlModalProps> = ({
                           type="time"
                           value={newRuleEndTime}
                           onChange={(e) => setNewRuleEndTime(e.target.value)}
+                          className="font-data"
                         />
                       </div>
                     </div>
@@ -952,7 +954,7 @@ export const ParentalControlModal: React.FC<ParentalControlModalProps> = ({
                           </div>
                           <div className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
                             <Clock size={12} />
-                            {formatTime(rule.start_time)} - {formatTime(rule.end_time)}
+                            <span className="font-data">{formatTime(rule.start_time)} - {formatTime(rule.end_time)}</span>
                             <span className="text-border">|</span>
                             {days.filter((_, idx) => rule.weekdays[idx]).join(', ')}
                           </div>

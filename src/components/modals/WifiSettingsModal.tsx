@@ -403,15 +403,15 @@ export const WifiSettingsModal: React.FC<WifiSettingsModalProps> = ({
       />
 
       {/* Tabs - scrollable on mobile */}
-      <div className="flex gap-1 overflow-x-auto border-b border-border bg-secondary/40 px-3 py-2">
+      <div className="flex gap-1 overflow-x-auto border-b border-border bg-secondary/40 px-3">
         {tabs.map(tab => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`flex items-center gap-2 whitespace-nowrap rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${
+            className={`flex items-center gap-2 whitespace-nowrap border-b-2 px-3 py-2.5 text-sm font-medium transition-colors ${
               activeTab === tab.id
-                ? 'border-border bg-accent text-foreground'
-                : 'border-transparent text-muted-foreground hover:bg-accent/50'
+                ? 'border-primary text-foreground'
+                : 'border-transparent text-muted-foreground hover:border-border hover:text-foreground'
             }`}
           >
             {tab.icon}
@@ -460,7 +460,7 @@ export const WifiSettingsModal: React.FC<WifiSettingsModalProps> = ({
                 <div className="space-y-4">
                   {/* Status card */}
                   <div className="p-6 bg-secondary/60 rounded-xl border border-border text-center">
-                    <div className={`w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-4 ${
+                    <div className={`w-20 h-20 mx-auto rounded flex items-center justify-center mb-4 ${
                       countdown !== null ? 'bg-destructive/20' : 'bg-muted'
                     }`}>
                       <Timer size={40} className={countdown !== null ? 'text-destructive' : 'text-muted-foreground'} />
@@ -471,7 +471,7 @@ export const WifiSettingsModal: React.FC<WifiSettingsModalProps> = ({
                         <h3 className="text-lg font-medium text-destructive mb-2">
                           WiFi désactivé temporairement
                         </h3>
-                        <div className="text-4xl font-bold text-foreground mb-4 font-mono">
+                        <div className="text-4xl font-bold text-foreground mb-4 font-data">
                           {formatCountdown(countdown)}
                         </div>
                         <Button
@@ -582,7 +582,7 @@ export const WifiSettingsModal: React.FC<WifiSettingsModalProps> = ({
                         placeholder="Minimum 8 caractères"
                         value={guestKey}
                         onChange={(e) => setGuestKey(e.target.value)}
-                        className="font-mono"
+                        className="font-data"
                       />
                       {guestKey.length > 0 && guestKey.length < 8 && (
                         <p className="text-xs text-warning mt-1">Le mot de passe doit contenir au moins 8 caractères</p>
@@ -619,7 +619,7 @@ export const WifiSettingsModal: React.FC<WifiSettingsModalProps> = ({
                 <div className="space-y-4">
                   {/* Header */}
                   <div className="p-6 bg-secondary/60 rounded-xl border border-border text-center">
-                    <div className={`w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-4 ${
+                    <div className={`w-20 h-20 mx-auto rounded flex items-center justify-center mb-4 ${
                       mloConfig?.enabled ? 'bg-primary/20' : 'bg-muted'
                     }`}>
                       <Link2 size={40} className={mloConfig?.enabled ? 'text-primary' : 'text-muted-foreground'} />
@@ -722,7 +722,7 @@ export const WifiSettingsModal: React.FC<WifiSettingsModalProps> = ({
                         placeholder="Adresse MAC (ex: AA:BB:CC:DD:EE:FF)"
                         value={newMacAddress}
                         onChange={(e) => setNewMacAddress(e.target.value.toUpperCase())}
-                        className="flex-1 font-mono"
+                        className="flex-1 font-data"
                       />
                     </div>
                     <div className="flex gap-2">
@@ -770,11 +770,11 @@ export const WifiSettingsModal: React.FC<WifiSettingsModalProps> = ({
                       {macFilterRules.map((rule, i) => (
                         <div key={i} className="flex items-center justify-between p-3 bg-secondary/60 rounded-lg border border-border group">
                           <div className="flex items-center gap-3">
-                            <div className={`w-2 h-2 rounded-full ${
+                            <div className={`w-2 h-2 rounded-sm ${
                               rule.type === 'whitelist' ? 'bg-success' : 'bg-destructive'
                             }`} />
                             <div>
-                              <span className="font-mono text-sm text-foreground">{rule.mac}</span>
+                              <span className="font-data text-sm text-foreground">{rule.mac}</span>
                               {rule.comment && (
                                 <p className="text-xs text-muted-foreground mt-0.5">{rule.comment}</p>
                               )}
@@ -864,7 +864,7 @@ export const WifiSettingsModal: React.FC<WifiSettingsModalProps> = ({
                           <button
                             key={hour}
                             onClick={() => toggleColumn(hour)}
-                            className="flex-1 text-center text-[10px] text-muted-foreground hover:text-foreground transition-colors py-1"
+                            className="flex-1 text-center text-[10px] font-data text-muted-foreground hover:text-foreground transition-colors py-1"
                             title={`Basculer ${hour}h`}
                           >
                             {hour}
@@ -945,7 +945,7 @@ export const WifiSettingsModal: React.FC<WifiSettingsModalProps> = ({
               {activeTab === 'wps' && (
                 <div className="space-y-4">
                   <div className="p-6 bg-secondary/60 rounded-xl border border-border text-center">
-                    <div className="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-4 bg-muted">
+                    <div className="w-20 h-20 mx-auto rounded flex items-center justify-center mb-4 bg-muted">
                       <Wifi size={40} className="text-muted-foreground" />
                     </div>
 
